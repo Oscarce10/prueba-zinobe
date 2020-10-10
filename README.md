@@ -12,6 +12,12 @@ cd prueba-zinobe
 
 Si existen los archivos `database.db` y/o `dataframe.json` eliminarlos antes de correr el proyecto.
 
+## Eliminar archivos database.db y/o dataframe.json
+
+```
+rm database.db && rm dataframe.json
+```
+
 ## Correr el proyecto
 
 ```
