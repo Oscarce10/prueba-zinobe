@@ -8,7 +8,7 @@ class ConexionDB():
         self.cursor = self.con.cursor()
 
     def crearTabla(self):
-        self.cursor.execute("CREATE TABLE tabla (id integer PRIMARY KEY AUTOINCREMENT, region text, country text, language text, time text)")
+        self.cursor.execute("CREATE TABLE IF NOT EXISTS tabla (id integer PRIMARY KEY AUTOINCREMENT, region text, country text, language text, time text)")
 
     def insertarFila(self, fila):
         self.cursor.execute("INSERT INTO tabla (region, country, language, time) VALUES (?, ?, ?, ?)", fila)

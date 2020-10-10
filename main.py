@@ -95,8 +95,10 @@ for i in filas:
     db.insertarFila(i)
 
 # Se muestra la tabla
-#for i in db.mostrarFilas():
- #   print(i)
+
+print("Tabla de sqlite")
+for i in db.mostrarFilas():
+    print(i)
 
 
 # 8. Genere un Json de la tabla creada y guardelo como data.json
