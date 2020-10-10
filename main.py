@@ -1,13 +1,9 @@
-# Importar librerias
+# Importar modulos
 import pandas as pd
-import numpy as np
-import http
-import requests
 import time
 import hashlib
 # Modulo de la api
 import api_module as api
-
 # Modulo de bd sqlite
 from db_module import ConexionDB
 
@@ -49,7 +45,7 @@ for region in regiones:
     try:
         # En tal caso que no se haya limpiado la lista de regiones y se detecte una region nula o sin nombre, para evitar errores se evalua dentro
         # de un try-catch usando la funcion assert() que evalua valores y devuelve una excepcion AssertionError la cual evita que enviemos a la api
-        # valores vacios y se nos generen problemas
+        # valores vacios o nulos y se nos generen problemas
         assert(region)
         # Comienzo el reloj para calcular el tiempo que tarda cada tupla en generarse
         start_time = time.time()
@@ -58,21 +54,21 @@ for region in regiones:
 
         # 3. De https://restcountries.eu/ obtenga el nombre del idioma que habla el pais y encriptelo con SHA1
         # Ahora vuelvo a llamar a la api y esta vez le paso como argumento cada pais con el fin de retornar el lenguaje que habla
-        lenguage = api.getLanguage(pais)
+        lenguaje = api.getLanguage(pais)
         # print(f"{region} -> {pais} -> {lenguage}")
 
         # Encripto el lenguage con SHA1
-        lenguage = hashlib.sha1(lenguage.encode('UTF-8')).hexdigest()
+        lenguaje = hashlib.sha1(lenguaje.encode('UTF-8')).hexdigest()
         # print(lenguage)
 
         # 4. En la columna Time ponga el tiempo que tardo en armar la fila (debe ser automatico)
 
         # Al tiempo que se hace esto se almacena la fila en el la lista de las filas
-        filas.append([region, pais, lenguage, time.time() - start_time])
+        filas.append([region, pais, lenguaje, time.time() - start_time])
         
     except AssertionError:
         # print("Region vacia")
-        continue  
+        pass  
         
 # Se crea el dataframe a mostrar como resultado, se le agregan las columnas y se rellena con las filas
 dataframe = pd.DataFrame(filas, columns=["Region", "Country", "Language", "Time"])
@@ -96,7 +92,7 @@ for i in filas:
 
 # Se muestra la tabla
 
-print("Tabla de sqlite")
+print("----------- Tabla de sqlite ----------------")
 for i in db.mostrarFilas():
     print(i)
 
@@ -104,4 +100,8 @@ for i in db.mostrarFilas():
 # 8. Genere un Json de la tabla creada y guardelo como data.json
 
 # Se usa el metodo de pandas.DataFrame.to_json que nos permite exportar el dataframe creado en formato json y como argumento se pasa destino y nombre de archivo
-dataframe.to_json(r'dataframe.json')
+dataframe.to_json(r'data.json')
+
+# Se evalua el archivo json generado
+print('--------- Dataframe from data.json ----------')
+print(pd.read_json('data.json'))
