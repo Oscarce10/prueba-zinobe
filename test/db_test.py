@@ -8,6 +8,7 @@ class TestDB(unittest.TestCase):
     def testCreateDB(self):
         bd = db.ConexionDB()
         self.assertIsNotNone(bd)
+    
 
 if __name__ == "__main__":
     unittest.main()

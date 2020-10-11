@@ -7,7 +7,6 @@ class ConexionDB():
     def __init__(self):
         try:
             self.con = sqlite3.connect("../db/database.db")
-            print (sqlite3.version)
         except Exception as e:
             print(e)
 
