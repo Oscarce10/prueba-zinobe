@@ -83,8 +83,8 @@ for i in db.mostrarFilas():
 # 8. Genere un Json de la tabla creada y guardelo como data.json
 
 # Se usa el metodo de pandas.DataFrame.to_json que nos permite exportar el dataframe creado en formato json y como argumento se pasa destino y nombre de archivo
-dataframe.to_json(r'../data.json')
+dataframe.to_json(r'../json/data.json')
 
 # Se evalua el archivo json generado
 print('--------- Dataframe from data.json ----------')
-print(pd.read_json('../data.json'))
+print(pd.read_json('../json/data.json'))
