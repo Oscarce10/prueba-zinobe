@@ -20,8 +20,8 @@ def getPaisPorRegion(region):
     try:
         url = f"https://restcountries.eu/rest/v2/region/{region}"
         response = requests.get(url)
-        # Se devuelve el indice de un pais tomado al azar de la longitud de paises devueltos, todo esto usando el modulo json de python. Se busca en el diccionario el nombre del 
-        # pais y es lo que se retorna
+        # Se devuelve el indice de un pais tomado al azar de la longitud de paises devueltos, todo esto usando el modulo json de python.
+        #  Se busca en el diccionario el nombre del pais y es lo que se retorna
         respuesta = json.loads(response.text)
         return(respuesta[random.randint(0, len(respuesta) - 1)]["name"])
 

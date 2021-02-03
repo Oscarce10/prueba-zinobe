@@ -20,3 +20,17 @@ cd src
 ```
 python main.py
 ```
+
+## Ejecutar tests
+
+```
+cd test
+```
+
+```
+python api_test.py
+```
+
+```
+python db_test.py
+```
